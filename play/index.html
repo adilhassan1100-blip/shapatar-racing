@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Shapatar Racing</title>
+<style>
+  html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#14110f; touch-action:none; -webkit-user-select:none; user-select:none; }
+  #game { position:fixed; inset:0; width:100vw; height:100vh; height:100dvh; display:block; background:#14110f; }
+  #loading { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#f4efe8; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; background:#14110f; z-index:5; }
+  #loading h1 { color:#ffcf40; font-size:clamp(28px,7vw,54px); margin:0 0 18px; font-weight:900; letter-spacing:1px; }
+  #bar { width:min(70vw,420px); height:14px; background:#3a322b; border-radius:8px; overflow:hidden; }
+  #fill { width:0; height:100%; background:linear-gradient(90deg,#ff8a1f,#ffcf40); transition:width .2s; }
+  #pct { margin-top:10px; color:#b9ada0; font-size:14px; }
+  #fs { position:fixed; top:10px; left:50%; transform:translateX(-50%); z-index:6; background:rgba(0,0,0,.45); color:#fff; border:1px solid rgba(255,255,255,.35); border-radius:8px; padding:6px 12px; font:600 13px system-ui,sans-serif; display:none; }
+  #rotate { position:fixed; inset:0; z-index:10; display:none; flex-direction:column; align-items:center; justify-content:center; background:#14110f; color:#f4efe8; font:600 20px system-ui,sans-serif; text-align:center; padding:16px; }
+  #rotate .ph { font-size:64px; animation:turn 1.6s ease-in-out infinite; }
+  @keyframes turn { 0%,30% { transform:rotate(0) } 60%,100% { transform:rotate(90deg) } }
+  @media (orientation: portrait) and (pointer: coarse) { #rotate { display:flex; } }
+  #err { color:#ff9060; margin-top:14px; max-width:80vw; text-align:center; font-size:14px; }
+</style>
+</head>
+<body>
+<canvas id="game" tabindex="-1"></canvas>
+<div id="loading">
+  <h1>SHAPATAR RACING</h1>
+  <div id="bar"><div id="fill"></div></div>
+  <div id="pct">Loading... 0%</div>
+  <div id="err"></div>
+</div>
+<button id="fs" type="button">⛶ Full screen</button>
+<div id="rotate"><div class="ph">📱</div><p>Phone ko aara (landscape) karo<br><small>Rotate your phone</small></p></div>
+<script>
+  var isPhone = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  var canvas = document.getElementById("game");
+  var fill = document.getElementById("fill"), pct = document.getElementById("pct");
+  var config = {
+    dataUrl: "Build/Web.data.unityweb",
+    frameworkUrl: "Build/Web.framework.js.unityweb",
+    codeUrl: "Build/Web.wasm.unityweb",
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: "Shapatar",
+    productName: "Shapatar Racing",
+    productVersion: "1.0",
+  };
+  // phones: render at a lower pixel ratio so it stays smooth
+  if (isPhone) config.devicePixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+  var script = document.createElement("script");
+  script.src = "Build/Web.loader.js";
+  script.onload = function () {
+    createUnityInstance(canvas, config, function (p) {
+      fill.style.width = Math.round(p * 100) + "%";
+      pct.textContent = "Loading... " + Math.round(p * 100) + "%";
+    }).then(function (unity) {
+      document.getElementById("loading").style.display = "none";
+      var fs = document.getElementById("fs");
+      fs.style.display = "block";
+      fs.onclick = function () {
+        unity.SetFullscreen(1);
+        if (screen.orientation && screen.orientation.lock) screen.orientation.lock("landscape").catch(function () {});
+        fs.style.display = "none";
+      };
+      document.addEventListener("fullscreenchange", function () { if (!document.fullscreenElement) fs.style.display = "block"; });
+    }).catch(function (e) {
+      document.getElementById("err").textContent = "Game load nahi hui: " + e + " (Chrome try karo)";
+    });
+  };
+  document.body.appendChild(script);
+</script>
+</body>
+</html>

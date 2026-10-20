@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shapatar Racing</title>
+<meta name="description" content="Karachi freestyle bike racing on Shahrah-e-Faisal. Play free in your browser.">
+<style>
+  :root { --bg:#14110f; --card:#211c18; --text:#f4efe8; --muted:#b9ada0; --gold:#ffcf40; --orange:#ff8a1f; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:880px; margin:0 auto; padding:24px 16px 48px; }
+  h1 { font-size:clamp(34px,8vw,64px); margin:8px 0 4px; letter-spacing:1px; color:var(--gold); font-weight:900; }
+  .tag { color:var(--muted); margin:0 0 20px; font-size:17px; }
+  img.shot { width:100%; border-radius:14px; display:block; border:1px solid #3a322b; }
+  .play { display:block; text-align:center; margin:22px 0 10px; padding:20px; border-radius:14px; background:linear-gradient(180deg,var(--orange),#e0650a); color:#fff; font-size:28px; font-weight:900; text-decoration:none; letter-spacing:1px; }
+  .play:active { transform:scale(.98); }
+  .note { color:var(--muted); text-align:center; font-size:14px; margin:0 0 26px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+  .card { background:var(--card); border-radius:14px; padding:16px 18px; border:1px solid #3a322b; }
+  .card h2 { margin:0 0 8px; font-size:18px; color:var(--gold); }
+  .card p, .card li { color:var(--text); font-size:15px; line-height:1.5; }
+  .card ul { margin:0; padding-left:18px; }
+  kbd { background:#3a322b; border-radius:5px; padding:1px 6px; font-size:13px; }
+  .soon { opacity:.7; }
+  footer { margin-top:30px; color:var(--muted); font-size:13px; text-align:center; }
+</style>
+</head>
+<body>
+<main>
+  <h1>SHAPATAR RACING</h1>
+  <p class="tag">Karachi freestyle bike race on Shahrah-e-Faisal: FTC se Baloch Colony tak. Chai piyo, nitro maaro, laat maaro, jeeto!</p>
+  <img class="shot" src="shot.jpg" alt="Racing past Lal Qila on Shahrah-e-Faisal">
+  <a class="play" href="play/">▶ KHELO (PLAY)</a>
+  <p class="note">Free, no download. First load takes a minute; after that it's fast.</p>
+  <div class="grid">
+    <div class="card">
+      <h2>📱 Phone par</h2>
+      <ul>
+        <li>Phone ko <b>landscape</b> (aara) karo</li>
+        <li>Left thumb: <b>&lt; &gt;</b> steering, <b>&lt; LAAT</b></li>
+        <li>Right thumb: <b>NITRO</b>, <b>BRAKE</b>, <b>LAAT &gt;</b></li>
+        <li>Seedha chalate waqt bike khud lait jati hai (Superman!)</li>
+        <li>Best in Chrome. Purane phones par thora slow ho sakta hai.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>💻 PC / Laptop par</h2>
+      <ul>
+        <li><kbd>A</kbd> <kbd>D</kbd> steering</li>
+        <li><kbd>W</kbd> lait jao (tez)</li>
+        <li><kbd>Space</kbd> nitro, <kbd>S</kbd> brake</li>
+        <li><kbd>Q</kbd> / <kbd>E</kbd> left / right laat</li>
+        <li><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> Asaan / Theek thaak / Mushkil</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>🏆 Kaise jeeto</h2>
+      <ul>
+        <li>Chai ke cup uthao: full nitro</li>
+        <li>Gaariyon ke paas se nikal ke <b>NEAR MISS</b>: nitro bharta hai</li>
+        <li>Takkar se bacho, rivals ko laat maaro</li>
+        <li>Aakhri 500m mein koi madad nahi. Jo acha chalaye, woh jeete!</li>
+      </ul>
+    </div>
+    <div class="card soon">
+      <h2>🤖 Android app</h2>
+      <p>APK jald aa raha hai (coming soon).</p>
+    </div>
+  </div>
+  <footer>Shapatar Racing · made in Karachi</footer>
+</main>
+</body>
+</html>
