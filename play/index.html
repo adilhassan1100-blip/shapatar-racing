@@ -18,7 +18,7 @@
   #rotate { position:fixed; inset:0; z-index:10; display:none; flex-direction:column; align-items:center; justify-content:center; background:#14110f; color:#f4efe8; font:600 20px system-ui,sans-serif; text-align:center; padding:16px; }
   #rotate .ph { font-size:64px; animation:turn 1.6s ease-in-out infinite; }
   @keyframes turn { 0%,30% { transform:rotate(0) } 60%,100% { transform:rotate(90deg) } }
-  @media (orientation: portrait) and (pointer: coarse) { #rotate { display:flex; } }
+  @media (orientation: portrait) and (pointer: coarse) { body:not(.playing) #rotate { display:flex; } }
   #err { color:#ff9060; margin-top:14px; max-width:80vw; text-align:center; font-size:14px; }
 </style>
 </head>
@@ -55,6 +55,8 @@
       pct.textContent = "Loading... " + Math.round(p * 100) + "%";
     }).then(function (unity) {
       window._unity = unity;
+      // once racing, never cover the game: a hard tilt can briefly flip the phone to portrait
+      document.body.classList.add("playing");
       document.getElementById("loading").style.display = "none";
       var fs = document.getElementById("fs");
       fs.style.display = "block";
