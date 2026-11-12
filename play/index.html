@@ -46,7 +46,7 @@
     productVersion: "1.0",
   };
   // phones: render at a lower pixel ratio so it stays smooth
-  if (isPhone) config.devicePixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+  if (isPhone) config.devicePixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
   var script = document.createElement("script");
   script.src = "Build/Web.loader.js";
   script.onload = function () {
