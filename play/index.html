@@ -54,6 +54,7 @@
       fill.style.width = Math.round(p * 100) + "%";
       pct.textContent = "Loading... " + Math.round(p * 100) + "%";
     }).then(function (unity) {
+      window._unity = unity;
       document.getElementById("loading").style.display = "none";
       var fs = document.getElementById("fs");
       fs.style.display = "block";
